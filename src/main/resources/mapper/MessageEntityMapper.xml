@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.MessageEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.MessageEntity">
+        <id column="msg_id" jdbcType="VARCHAR" property="id" />
+        <result column="msg_user_send" jdbcType="VARCHAR" property="userSend" />
+        <result column="msg_user_receive" jdbcType="VARCHAR" property="userReceive" />
+        <result column="msg_send_time" jdbcType="TIMESTAMP" property="sendTime" />
+        <result column="msg_text" jdbcType="VARCHAR" property="text" />
+        <result column="msg_type" jdbcType="INTEGER" property="type" />
+        <result column="msg_file_address" jdbcType="VARCHAR" property="fileAddressArray" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        msg_id, msg_user_send, msg_user_receive, msg_send_time, msg_text, msg_type, msg_file_address
+    </sql>
+
+<!--    <select id="queryMessageList" parameterType="com.kardia.volunteersystem.dao.entity.MessageEntity" resultMap="BaseResultMap">-->
+<!--        SELECT *-->
+<!--        FROM message_info-->
+<!--    </select>-->
+
+    <delete id="deleteMessage" parameterType="com.kardia.volunteersystem.dao.entity.MessageEntity">
+        delete from message_info
+        where msg_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertMessage" parameterType="com.kardia.volunteersystem.dao.entity.MessageEntity">
+        insert into message_info (msg_id, msg_user_send, msg_user_receive, msg_send_time,
+                                  msg_text, msg_type, msg_file_address)
+        values (#{id,jdbcType=VARCHAR}, #{userSend,jdbcType=VARCHAR}, #{userReceive,jdbcType=VARCHAR},
+                #{sendTime,jdbcType=TIMESTAMP}, #{text,jdbcType=VARCHAR},
+                #{type,jdbcType=INTEGER}, #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler})
+    </insert>
+
+    <update id="modifyMessage" parameterType="com.kardia.volunteersystem.dao.entity.MessageEntity">
+        update message_info
+        set msg_user_send = #{userSend,jdbcType=VARCHAR},
+            msg_user_receive = #{userReceive,jdbcType=VARCHAR},
+            msg_send_time = #{sendTime,jdbcType=TIMESTAMP},
+            msg_text = #{text,jdbcType=VARCHAR},
+            msg_type = #{type,jdbcType=INTEGER},
+            msg_file_address = #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler}
+        where msg_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="queryMessageList"  parameterType="com.kardia.volunteersystem.dao.entity.MessageEntity" resultMap="BaseResultMap">
+        SELECT a.* FROM (
+                            SELECT a.* from message_info as `a`
+                            WHERE `msg_user_send` = #{userSend} and `msg_user_receive` = #{userReceive}
+
+                            UNION
+                            SELECT a.* from message_info as `a`
+                            WHERE `msg_user_send` = #{userReceive} and `msg_user_receive` = #{userSend}) as `a`
+        ORDER BY a.msg_send_time asc
+    </select>
+
+    <insert id="addMessage" parameterType="com.kardia.volunteersystem.dao.entity.MessageEntity">
+        insert into message_info (msg_id, msg_user_send, msg_user_receive, msg_send_time,
+                                  msg_text, msg_type, msg_file_address)
+        values (#{id,jdbcType=VARCHAR}, #{userSend,jdbcType=VARCHAR}, #{userReceive,jdbcType=VARCHAR},
+                #{sendTime,jdbcType=TIMESTAMP}, #{text,jdbcType=VARCHAR},
+                #{type,jdbcType=INTEGER}, #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler})
+    </insert>
+
+</mapper>

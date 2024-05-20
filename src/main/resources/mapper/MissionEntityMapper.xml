@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.MissionEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.MissionEntity">
+        <id column="mission_id" jdbcType="VARCHAR" property="id" />
+        <result column="mission_name" jdbcType="VARCHAR" property="name" />
+        <result column="mission_type" jdbcType="INTEGER" property="type" />
+        <result column="mission_description" jdbcType="VARCHAR" property="description" />
+        <result column="mission_score" jdbcType="INTEGER" property="missionScore" />
+        <result column="mission_creator" jdbcType="VARCHAR" property="missionCreator" />
+        <result column="mission_start_time" jdbcType="TIMESTAMP" property="startDate" />
+        <result column="mission_end_time" jdbcType="TIMESTAMP" property="endDate" />
+        <result column="mission_file_address" jdbcType="VARCHAR" property="fileAddressArray" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+
+    </resultMap>
+
+    <select id="queryMissionList" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+    </select>
+
+    <delete id="deleteMission" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity">
+        delete from mission_info
+        where mission_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertMission" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity">
+        insert into mission_info (mission_id,mission_name,mission_type,
+                                  mission_description,mission_score,
+                                  mission_creator, mission_start_time,
+                                  mission_end_time, mission_file_address)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+                #{description,jdbcType=VARCHAR}, #{missionScore,jdbcType=INTEGER},
+                #{missionCreator,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP},
+                #{endDate,jdbcType=TIMESTAMP}, #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler})
+    </insert>
+
+    <update id="updateMission" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity">
+        update mission_info
+        set  mission_name = #{name,jdbcType=VARCHAR},
+             mission_type = #{type,jdbcType=INTEGER},
+             mission_description = #{description,jdbcType=VARCHAR},
+             mission_score = #{missionScore,jdbcType=INTEGER},
+             mission_creator = #{missionCreator,jdbcType=VARCHAR},
+             mission_start_time = #{startDate,jdbcType=TIMESTAMP},
+             mission_end_time = #{endDate,jdbcType=TIMESTAMP},
+             mission_file_address = #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler}
+        where mission_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectMissionById" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE mission_id = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="viewOpen" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE mission_creator = #{id,jdbcType=VARCHAR}
+        AND CURRENT_TIMESTAMP >= mission_start_time AND mission_end_time >= CURRENT_TIMESTAMP
+    </select>
+
+    <select id="viewClosed" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE mission_creator = #{id,jdbcType=VARCHAR}
+        AND CURRENT_TIMESTAMP >= mission_end_time
+    </select>
+
+    <select id="viewPre" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE mission_creator = #{id,jdbcType=VARCHAR}
+        AND mission_start_time >= CURRENT_TIMESTAMP
+    </select>
+
+    <!--根据任务名称查找任务信息-->
+    <select id="selectMission" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE mission_name = #{name,jdbcType=VARCHAR}
+    </select>
+    <!--根据任务创建者查找任务信息-->
+    <select id="SeeSelect" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE mission_creator = #{bindArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler}
+    </select>
+
+    <select id="sortMission" parameterType="com.kardia.volunteersystem.dao.entity.MissionEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        ORDER BY mission_start_time;
+    </select>
+
+</mapper>

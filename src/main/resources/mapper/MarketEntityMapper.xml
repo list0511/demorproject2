@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.MarketEntityMapper">
+
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.MarketEntity">
+        <id column="market_id" jdbcType="VARCHAR" property="id" />
+        <result column="market_name" jdbcType="VARCHAR" property="name" />
+        <result column="market_description" jdbcType="VARCHAR" property="description" />
+        <result column="market_type" jdbcType="INTEGER" property="type" />
+        <result column="market_file_address" jdbcType="VARCHAR" property="fileAddress" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+        <result column="market_cost" jdbcType="INTEGER" property="cost" />
+        <result column="market_updater" jdbcType="VARCHAR" property="updater" />
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        market_id, market_name, market_description, market_type, market_file_address, market_cost, market_updater
+    </sql>
+
+    <select id="queryMarketList" parameterType="com.kardia.volunteersystem.dao.entity.MarketEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_info
+    </select>
+
+    <select id="selectMarketById" parameterType="com.kardia.volunteersystem.dao.entity.MarketOrderEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_info
+        where order_id = #{orderMarketId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteMarket" parameterType="com.kardia.volunteersystem.dao.entity.MarketEntity">
+        delete from market_info
+        where market_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertMarket" parameterType="com.kardia.volunteersystem.dao.entity.MarketEntity">
+        insert into market_info (market_id, market_name, market_description,
+                                 market_type, market_file_address,
+                                 market_cost, market_updater)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+                #{type,jdbcType=VARCHAR}, #{fileAddress,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+                #{cost,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateMarket" parameterType="com.kardia.volunteersystem.dao.entity.MarketEntity">
+        update market_info
+        set market_id = #{id,jdbcType=VARCHAR},
+            market_name = #{name,jdbcType=VARCHAR},
+            market_description = #{description,jdbcType=VARCHAR},
+            market_type = #{type,jdbcType=VARCHAR},
+            market_file_address = #{fileAddress,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+            market_cost = #{cost,jdbcType=VARCHAR},
+            market_updater = #{updater,jdbcType=VARCHAR}
+        where market_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--根据选项查找商品-->
+    <select id="selectMarkeBySomething" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_info
+        WHERE 1=1
+        <if test="cost != null and cost != ''">
+            AND market_cost = #{cost}
+        </if>
+        <if test="type != null and type != ''">
+            AND market_type = #{type}
+        </if>
+        <if test="name != null and name != ''">
+            AND market_name  LIKE <![CDATA[CONCAT('%', IFNULL(#{name}, ''), '%')]]>
+        </if>
+        <if test="provider != null and provider != ''">
+            AND market_updater = #{updater}
+        </if>
+    </select>
+
+    <select id="sortMarketList" parameterType="com.kardia.volunteersystem.dao.entity.MarketEntity" resultMap="BaseResultMap">
+        SELECT market_info.*,COUNT(market_orders.order_id) AS order_count
+        FROM market_info
+                 LEFT JOIN market_orders ON market_info.market_id = market_orders.order_market_id
+        GROUP BY market_info.market_id
+        ORDER BY order_count DESC, market_info.market_updater ASC;
+    </select>
+
+
+</mapper>

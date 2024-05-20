@@ -1,0 +1,783 @@
+2023-11-12T00:01:25.083+08:00  INFO 12500 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T00:01:25.088+08:00  INFO 12500 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T00:01:25.089+08:00  INFO 12500 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-12T00:01:25.186+08:00  INFO 12500 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:01:26.462+08:00 ERROR 12500 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:345) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:333) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at jdk.proxy2/jdk.proxy2.$Proxy61.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.13.jar:3.5.13]
+	at jdk.proxy2/jdk.proxy2.$Proxy72.selectUserByAccount(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.0.9.jar:6.0.9]
+	at jdk.proxy2/jdk.proxy2.$Proxy73.selectUserByAccount(Unknown Source) ~[na:na]
+	at com.kardia.volunteersystem.service.UserService.IfHasTheUser(UserService.java:82) ~[classes/:na]
+	at com.kardia.volunteersystem.controller.UserController.UserLogin(UserController.java:138) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2023-11-12T00:05:13.813+08:00  INFO 12500 --- [http-nio-8087-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:05:14.838+08:00 ERROR 12500 --- [http-nio-8087-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:345) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:333) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at jdk.proxy2/jdk.proxy2.$Proxy61.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.13.jar:3.5.13]
+	at jdk.proxy2/jdk.proxy2.$Proxy72.selectUserByAccount(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.0.9.jar:6.0.9]
+	at jdk.proxy2/jdk.proxy2.$Proxy73.selectUserByAccount(Unknown Source) ~[na:na]
+	at com.kardia.volunteersystem.service.UserService.IfHasTheUser(UserService.java:82) ~[classes/:na]
+	at com.kardia.volunteersystem.controller.UserController.UserLogin(UserController.java:138) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2023-11-12T00:08:05.019+08:00  INFO 28872 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.9 with PID 28872 (C:\Users\HongxinJiang\Desktop\demorproject2\target\classes started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:08:05.021+08:00  INFO 28872 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:08:05.549+08:00 ERROR 28872 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:08:05.685+08:00  INFO 28872 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T00:08:05.692+08:00  INFO 28872 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T00:08:05.692+08:00  INFO 28872 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T00:08:05.765+08:00  INFO 28872 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T00:08:05.765+08:00  INFO 28872 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 718 ms
+2023-11-12T00:08:06.243+08:00  INFO 28872 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T00:08:06.248+08:00  INFO 28872 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.509 seconds (process running for 1.97)
+2023-11-12T00:08:16.076+08:00  INFO 28872 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T00:08:16.077+08:00  INFO 28872 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T00:08:16.078+08:00  INFO 28872 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T00:08:16.179+08:00  INFO 28872 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:08:16.468+08:00  INFO 28872 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3058a7ef
+2023-11-12T00:08:16.469+08:00  INFO 28872 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:19:51.450+08:00  INFO 28872 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:19:51.455+08:00  INFO 28872 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:20:15.988+08:00  INFO 28388 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.9 with PID 28388 (C:\Users\HongxinJiang\Desktop\demorproject2\target\classes started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:20:15.990+08:00  INFO 28388 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:20:16.557+08:00 ERROR 28388 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:20:16.694+08:00  INFO 28388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T00:20:16.701+08:00  INFO 28388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T00:20:16.701+08:00  INFO 28388 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T00:20:16.776+08:00  INFO 28388 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T00:20:16.776+08:00  INFO 28388 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 756 ms
+2023-11-12T00:20:17.322+08:00  INFO 28388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T00:20:17.327+08:00  INFO 28388 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.67 seconds (process running for 2.144)
+2023-11-12T00:20:27.860+08:00  INFO 28388 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T00:20:27.861+08:00  INFO 28388 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T00:20:27.861+08:00  INFO 28388 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T00:20:27.964+08:00  INFO 28388 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:20:28.268+08:00  INFO 28388 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3058a7ef
+2023-11-12T00:20:28.270+08:00  INFO 28388 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:23:17.954+08:00  INFO 28388 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:23:17.959+08:00  INFO 28388 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:23:45.059+08:00  INFO 28348 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.9 with PID 28348 (started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:23:45.060+08:00  INFO 28348 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:23:46.012+08:00 ERROR 28348 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:23:46.295+08:00  INFO 28348 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 1.474 seconds (process running for 2.3)
+2023-11-12T00:23:47.036+08:00  INFO 28348 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:23:47.317+08:00  INFO 28348 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@425f94d7
+2023-11-12T00:23:47.318+08:00  INFO 28348 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:23:47.350+08:00  INFO 28348 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T00:23:47.354+08:00  INFO 28348 --- [main] c.k.v.VolunteerSystemApplicationTests    : [MarketEntity{id='1b36ecc0485645049e5ba116f4307bf4', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@10f397d0', cost=0, updater='marketupdater'}, MarketEntity{id='c6fad0962ba04cf087b8828bbf1dbe9d', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@33a3e5db', cost=0, updater='marketupdater'}, MarketEntity{id='ecf9f598e894466a9151680bf6e7fb53', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@4f9213d2', cost=0, updater='marketupdater'}]
+2023-11-12T00:23:47.369+08:00  INFO 28348 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:23:47.372+08:00  INFO 28348 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:25:31.184+08:00  INFO 28688 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.9 with PID 28688 (started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:25:31.185+08:00  INFO 28688 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:25:32.183+08:00 ERROR 28688 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:25:32.498+08:00  INFO 28688 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 1.553 seconds (process running for 2.358)
+2023-11-12T00:25:33.261+08:00  INFO 28688 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:25:33.549+08:00  INFO 28688 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d49a1a0
+2023-11-12T00:25:33.551+08:00  INFO 28688 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:25:33.580+08:00  INFO 28688 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T00:25:33.584+08:00  INFO 28688 --- [main] c.k.v.VolunteerSystemApplicationTests    : [MarketEntity{id='1b36ecc0485645049e5ba116f4307bf4', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@39004e4f', cost=0, updater='marketupdater'}, MarketEntity{id='c6fad0962ba04cf087b8828bbf1dbe9d', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@5f0ca069', cost=0, updater='marketupdater'}, MarketEntity{id='ecf9f598e894466a9151680bf6e7fb53', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@6a6a2fdd', cost=0, updater='marketupdater'}]
+2023-11-12T00:25:33.598+08:00  INFO 28688 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:25:33.601+08:00  INFO 28688 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:25:36.834+08:00  INFO 29080 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.9 with PID 29080 (C:\Users\HongxinJiang\Desktop\demorproject2\target\classes started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:25:36.836+08:00  INFO 29080 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:25:37.300+08:00 ERROR 29080 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:25:37.437+08:00  INFO 29080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T00:25:37.443+08:00  INFO 29080 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T00:25:37.444+08:00  INFO 29080 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T00:25:37.522+08:00  INFO 29080 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T00:25:37.522+08:00  INFO 29080 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 661 ms
+2023-11-12T00:25:37.990+08:00  INFO 29080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T00:25:37.995+08:00  INFO 29080 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.449 seconds (process running for 1.918)
+2023-11-12T00:25:44.530+08:00  INFO 29080 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T00:25:44.530+08:00  INFO 29080 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T00:25:44.530+08:00  INFO 29080 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T00:25:44.608+08:00  INFO 29080 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:25:44.807+08:00  INFO 29080 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@34937176
+2023-11-12T00:25:44.809+08:00  INFO 29080 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:42:28.952+08:00  INFO 29080 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:42:28.959+08:00  INFO 29080 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:42:31.373+08:00  INFO 15096 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.9 with PID 15096 (C:\Users\HongxinJiang\Desktop\demorproject2\target\classes started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:42:31.376+08:00  INFO 15096 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:42:31.884+08:00 ERROR 15096 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:42:32.019+08:00  INFO 15096 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T00:42:32.026+08:00  INFO 15096 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T00:42:32.026+08:00  INFO 15096 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T00:42:32.101+08:00  INFO 15096 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T00:42:32.102+08:00  INFO 15096 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 702 ms
+2023-11-12T00:42:32.573+08:00  INFO 15096 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T00:42:32.578+08:00  INFO 15096 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.491 seconds (process running for 1.95)
+2023-11-12T00:42:58.298+08:00  INFO 15096 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T00:42:58.299+08:00  INFO 15096 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T00:42:58.299+08:00  INFO 15096 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T00:42:58.401+08:00  INFO 15096 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:42:58.680+08:00  INFO 15096 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3058a7ef
+2023-11-12T00:42:58.682+08:00  INFO 15096 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:45:39.658+08:00  INFO 15096 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:45:39.663+08:00  INFO 15096 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:45:42.040+08:00  INFO 29212 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.9 with PID 29212 (C:\Users\HongxinJiang\Desktop\demorproject2\target\classes started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:45:42.041+08:00  INFO 29212 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:45:42.523+08:00 ERROR 29212 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:45:42.658+08:00  INFO 29212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T00:45:42.666+08:00  INFO 29212 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T00:45:42.666+08:00  INFO 29212 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T00:45:42.737+08:00  INFO 29212 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T00:45:42.738+08:00  INFO 29212 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 673 ms
+2023-11-12T00:45:43.223+08:00  INFO 29212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T00:45:43.228+08:00  INFO 29212 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.481 seconds (process running for 1.92)
+2023-11-12T00:46:18.590+08:00  INFO 29164 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.9 with PID 29164 (started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:46:18.592+08:00  INFO 29164 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:46:19.558+08:00 ERROR 29164 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:46:19.871+08:00  INFO 29164 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 1.532 seconds (process running for 2.338)
+2023-11-12T00:46:20.645+08:00  INFO 29164 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:46:20.911+08:00  INFO 29164 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5383bf08
+2023-11-12T00:46:20.913+08:00  INFO 29164 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T00:46:20.943+08:00  INFO 29164 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T00:46:20.949+08:00  INFO 29164 --- [main] c.k.v.VolunteerSystemApplicationTests    : [MarketEntity{id='1b36ecc0485645049e5ba116f4307bf4', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@78d61f17', cost=0, updater='marketupdater'}, MarketEntity{id='c6fad0962ba04cf087b8828bbf1dbe9d', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@4cfe9594', cost=0, updater='marketupdater'}, MarketEntity{id='ecf9f598e894466a9151680bf6e7fb53', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@60861e5d', cost=0, updater='marketupdater'}]
+2023-11-12T00:46:20.964+08:00  INFO 29164 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T00:46:20.967+08:00  INFO 29164 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T00:46:34.940+08:00  INFO 23868 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.9 with PID 23868 (C:\Users\HongxinJiang\Desktop\demorproject2\target\classes started by 江宏鑫 in C:\Users\HongxinJiang\Desktop\demorproject2)
+2023-11-12T00:46:34.942+08:00  INFO 23868 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T00:46:35.409+08:00 ERROR 23868 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.25] of the Apache Tomcat Native library is installed, while Tomcat requires version [1.2.34]
+2023-11-12T00:46:35.533+08:00  INFO 23868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T00:46:35.539+08:00  INFO 23868 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T00:46:35.540+08:00  INFO 23868 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T00:46:35.605+08:00  INFO 23868 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T00:46:35.605+08:00  INFO 23868 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 638 ms
+2023-11-12T00:46:36.067+08:00  INFO 23868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T00:46:36.074+08:00  INFO 23868 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.413 seconds (process running for 1.822)
+2023-11-12T00:46:45.297+08:00  INFO 23868 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T00:46:45.298+08:00  INFO 23868 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T00:46:45.298+08:00  INFO 23868 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T00:46:45.369+08:00  INFO 23868 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T00:46:45.589+08:00  INFO 23868 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@480eed75
+2023-11-12T00:46:45.591+08:00  INFO 23868 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T01:40:50.944+08:00  INFO 3668 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 3668 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T01:40:50.949+08:00  INFO 3668 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T01:40:51.815+08:00  INFO 3668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T01:40:51.816+08:00  INFO 3668 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T01:40:51.816+08:00  INFO 3668 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T01:40:51.828+08:00  INFO 3668 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T01:40:51.836+08:00  INFO 3668 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T01:40:51.836+08:00  INFO 3668 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T01:40:51.934+08:00  INFO 3668 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T01:40:51.934+08:00  INFO 3668 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 929 ms
+2023-11-12T01:40:52.582+08:00  INFO 3668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T01:40:52.590+08:00  INFO 3668 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 2.435 seconds (process running for 3.351)
+2023-11-12T11:44:23.956+08:00  INFO 17756 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 17756 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T11:44:23.959+08:00  INFO 17756 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T11:44:24.891+08:00  INFO 17756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T11:44:24.891+08:00  INFO 17756 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T11:44:24.891+08:00  INFO 17756 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T11:44:24.902+08:00  INFO 17756 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T11:44:24.916+08:00  INFO 17756 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T11:44:24.917+08:00  INFO 17756 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T11:44:25.005+08:00  INFO 17756 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T11:44:25.005+08:00  INFO 17756 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1008 ms
+2023-11-12T11:44:25.661+08:00  INFO 17756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T11:44:25.668+08:00  INFO 17756 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 2.156 seconds (process running for 2.848)
+2023-11-12T11:58:01.679+08:00  INFO 17756 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T11:58:01.681+08:00  INFO 17756 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T11:58:01.684+08:00  INFO 17756 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-11-12T11:58:01.811+08:00  INFO 17756 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T11:58:03.275+08:00 ERROR 17756 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+java.sql.SQLSyntaxErrorException: Unknown database 'volunteersystem'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:345) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:333) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at jdk.proxy2/jdk.proxy2.$Proxy61.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.13.jar:3.5.13]
+	at jdk.proxy2/jdk.proxy2.$Proxy68.viewOpen(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.0.9.jar:6.0.9]
+	at jdk.proxy2/jdk.proxy2.$Proxy69.viewOpen(Unknown Source) ~[na:na]
+	at com.kardia.volunteersystem.service.MissionService.ViewOpen(MissionService.java:41) ~[classes/:na]
+	at com.kardia.volunteersystem.controller.MissionController.ViewOpenMissions(MissionController.java:40) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-11-12T11:58:03.293+08:00 ERROR 17756 --- [http-nio-8087-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.mybatis.spring.MyBatisSystemException] with root cause
+
+java.sql.SQLSyntaxErrorException: Unknown database 'volunteersystem'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80) ~[spring-jdbc-6.0.9.jar:6.0.9]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:345) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:333) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at jdk.proxy2/jdk.proxy2.$Proxy61.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.2.jar:3.0.2]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:142) ~[mybatis-3.5.13.jar:3.5.13]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.13.jar:3.5.13]
+	at jdk.proxy2/jdk.proxy2.$Proxy68.viewOpen(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.9.jar:6.0.9]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.0.9.jar:6.0.9]
+	at jdk.proxy2/jdk.proxy2.$Proxy69.viewOpen(Unknown Source) ~[na:na]
+	at com.kardia.volunteersystem.service.MissionService.ViewOpen(MissionService.java:41) ~[classes/:na]
+	at com.kardia.volunteersystem.controller.MissionController.ViewOpenMissions(MissionController.java:40) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.9.jar:6.0.9]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.8.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.9.jar:6.0.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.8.jar:10.1.8]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-11-12T11:59:35.266+08:00  INFO 9856 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 9856 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T11:59:35.269+08:00  INFO 9856 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T11:59:36.267+08:00  INFO 9856 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T11:59:36.275+08:00  INFO 9856 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T11:59:36.275+08:00  INFO 9856 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T11:59:36.277+08:00  INFO 9856 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T11:59:36.285+08:00  INFO 9856 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T11:59:36.285+08:00  INFO 9856 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T11:59:36.377+08:00  INFO 9856 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T11:59:36.377+08:00  INFO 9856 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1070 ms
+2023-11-12T11:59:37.009+08:00  INFO 9856 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T11:59:37.016+08:00  INFO 9856 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 2.145 seconds (process running for 2.819)
+2023-11-12T12:00:05.826+08:00  INFO 9856 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T12:00:05.827+08:00  INFO 9856 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T12:00:05.827+08:00  INFO 9856 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T12:00:05.965+08:00  INFO 9856 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T12:00:06.315+08:00  INFO 9856 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@469966ce
+2023-11-12T12:00:06.318+08:00  INFO 9856 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T13:51:53.676+08:00  INFO 9856 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T13:51:53.695+08:00  INFO 9856 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T13:51:59.119+08:00  INFO 13156 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 13156 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T13:51:59.124+08:00  INFO 13156 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T13:51:59.992+08:00  INFO 13156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T13:51:59.993+08:00  INFO 13156 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T13:51:59.993+08:00  INFO 13156 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T13:52:00.001+08:00  INFO 13156 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T13:52:00.010+08:00  INFO 13156 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T13:52:00.010+08:00  INFO 13156 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T13:52:00.100+08:00  INFO 13156 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T13:52:00.100+08:00  INFO 13156 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 932 ms
+2023-11-12T13:52:00.733+08:00  INFO 13156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T13:52:00.739+08:00  INFO 13156 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 2.309 seconds (process running for 3.511)
+2023-11-12T14:02:27.610+08:00  INFO 13156 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T14:02:27.611+08:00  INFO 13156 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T14:02:27.612+08:00  INFO 13156 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-12T14:02:27.738+08:00  INFO 13156 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T14:02:28.149+08:00  INFO 13156 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@49ef155e
+2023-11-12T14:02:28.152+08:00  INFO 13156 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T14:02:35.733+08:00  WARN 13156 --- [http-nio-8087-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.util.Date` from String "Nov 12, 2023 6:02:29 AM": not a valid representation (error: Failed to parse Date value 'Nov 12, 2023 6:02:29 AM': Cannot parse date "Nov 12, 2023 6:02:29 AM": not compatible with any of standard forms ("yyyy-MM-dd'T'HH:mm:ss.SSSX", "yyyy-MM-dd'T'HH:mm:ss.SSS", "EEE, dd MMM yyyy HH:mm:ss zzz", "yyyy-MM-dd"))]
+2023-11-12T14:18:49.204+08:00  INFO 14876 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.7 with PID 14876 (started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T14:18:49.207+08:00  INFO 14876 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T14:18:51.416+08:00  INFO 14876 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 2.628 seconds (process running for 4.454)
+2023-11-12T14:18:52.642+08:00  INFO 14876 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T14:18:53.278+08:00  INFO 14876 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b144175
+2023-11-12T14:18:53.281+08:00  INFO 14876 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T14:18:53.322+08:00  INFO 14876 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:18:53.328+08:00  INFO 14876 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='e955d72faa0e4f51af9a27a860e5b45c', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@6a0e97fc', cost=0, updater='marketupdater'}
+2023-11-12T14:18:53.356+08:00  INFO 14876 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T14:18:53.363+08:00  INFO 14876 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T14:19:35.246+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.7 with PID 9068 (started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T14:19:35.248+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T14:19:37.155+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 2.264 seconds (process running for 3.499)
+2023-11-12T14:19:38.169+08:00  INFO 9068 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T14:19:38.512+08:00  INFO 9068 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@29c80149
+2023-11-12T14:19:38.514+08:00  INFO 9068 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T14:19:38.545+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.549+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='7cf2feb363e0494c98ade248ae75d3be', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@55e5415d', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.559+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.559+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='5b187958c4f04f95aa4d076869851847', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@52d59507', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.566+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.566+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='e4ef1b9d97e24f5cb0851e7c9bc648a1', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@3265995e', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.572+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.572+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='50fd8c0996aa4669afa2296b2978f9db', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@4df13dd0', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.577+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.578+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='2a0915c4bcb944268423b9d5db7f0eee', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@30665461', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.583+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.583+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='b4c871363f9c45e8ba6fe038a1597fee', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@50b38342', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.589+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.589+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='ff41add364334d37a2c4d06151bb2d91', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@408d945b', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.595+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.596+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='0972f6bd35684833958ad75a79885386', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@59c862af', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.603+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.603+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='213bc7b5c27547679fd93c8ac2c773ca', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@673a9db4', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.609+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.609+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='9a93b3673c9a4b61aa313ae3d495758e', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@2792c28', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.615+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.616+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='8c98e4481e5a45c9ae444ab8acdccbc9', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@351e86b2', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.622+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.622+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='6566a575b802407cafb17acbaa8c9d33', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@11582db6', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.628+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.628+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='b95825cf1c9540179d78f10d1d2913e0', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@57a5b03', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.635+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.635+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='4e1f90f645cb4e619b817f3302349a2f', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@558127d2', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.641+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.641+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='3e69310c006041f0ace7f7ede682c3ce', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@4552f905', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.650+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.651+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='0f7258a9f1164d539046e15987eb580b', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@4b7e4d14', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.656+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.657+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='a8de4948d1c745a2b381b305918156da', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@601d9f3a', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.662+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.662+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='66ec35d976e84dba8a7745e6c98f6529', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@6585df70', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.667+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.667+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='9fe2dbbd69684787aa39ac1325b13fde', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@51fb5fe6', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.672+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.673+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='3ac05233dd8b49c0b9f6334a314ff928', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@1791e231', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.680+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T14:19:38.681+08:00  INFO 9068 --- [main] c.k.v.VolunteerSystemApplicationTests    : MarketEntity{id='16fea8972425475fb7a9bbbe7233471d', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@5e360c3b', cost=0, updater='marketupdater'}
+2023-11-12T14:19:38.705+08:00  INFO 9068 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T14:19:38.724+08:00  INFO 9068 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T15:02:54.620+08:00  INFO 15980 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.7 with PID 15980 (started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T15:02:54.622+08:00  INFO 15980 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T15:02:56.560+08:00  INFO 15980 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 2.314 seconds (process running for 3.457)
+2023-11-12T15:02:57.550+08:00  INFO 15980 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T15:02:57.921+08:00  INFO 15980 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@687e561b
+2023-11-12T15:02:57.923+08:00  INFO 15980 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T15:02:57.993+08:00  INFO 15980 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T15:02:57.997+08:00  INFO 15980 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T15:07:59.600+08:00  INFO 2244 --- [main] c.k.v.VolunteerSystemApplicationTests    : Starting VolunteerSystemApplicationTests using Java 17.0.7 with PID 2244 (started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T15:07:59.601+08:00  INFO 2244 --- [main] c.k.v.VolunteerSystemApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T15:08:01.457+08:00  INFO 2244 --- [main] c.k.v.VolunteerSystemApplicationTests    : Started VolunteerSystemApplicationTests in 2.213 seconds (process running for 3.433)
+2023-11-12T15:08:02.413+08:00  INFO 2244 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T15:08:02.726+08:00  INFO 2244 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@286dfa20
+2023-11-12T15:08:02.728+08:00  INFO 2244 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T15:08:02.763+08:00  INFO 2244 --- [main] c.k.v.VolunteerSystemApplicationTests    : ---结果---
+2023-11-12T15:08:02.770+08:00  INFO 2244 --- [main] c.k.v.VolunteerSystemApplicationTests    : [MarketEntity{id='0972f6bd35684833958ad75a79885386', name='marketname', description='marketdesription', type=0, fileAddress='[Ljava.lang.String;@50e1f3fc', cost=0, updater='marketupdater'}]
+2023-11-12T15:08:02.788+08:00  INFO 2244 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T15:08:02.792+08:00  INFO 2244 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T15:22:20.528+08:00  INFO 13156 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T15:22:20.539+08:00  INFO 13156 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T15:22:23.966+08:00  INFO 4524 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 4524 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T15:22:23.969+08:00  INFO 4524 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T15:22:24.740+08:00  INFO 4524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T15:22:24.741+08:00  INFO 4524 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T15:22:24.741+08:00  INFO 4524 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T15:22:24.743+08:00  INFO 4524 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T15:22:24.751+08:00  INFO 4524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T15:22:24.751+08:00  INFO 4524 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T15:22:24.854+08:00  INFO 4524 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T15:22:24.855+08:00  INFO 4524 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 853 ms
+2023-11-12T15:22:25.448+08:00  INFO 4524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T15:22:25.455+08:00  INFO 4524 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.951 seconds (process running for 2.703)
+2023-11-12T15:22:47.492+08:00  INFO 4524 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T15:22:47.493+08:00  INFO 4524 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T15:22:47.495+08:00  INFO 4524 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-12T15:22:47.636+08:00  INFO 4524 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T15:22:48.206+08:00  INFO 4524 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75eecc48
+2023-11-12T15:22:48.209+08:00  INFO 4524 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T15:48:44.992+08:00  INFO 4524 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T15:48:45.005+08:00  INFO 4524 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T15:48:49.909+08:00  INFO 21364 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 21364 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T15:48:49.911+08:00  INFO 21364 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T15:48:50.797+08:00  INFO 21364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T15:48:50.798+08:00  INFO 21364 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T15:48:50.798+08:00  INFO 21364 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T15:48:50.801+08:00  INFO 21364 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T15:48:50.811+08:00  INFO 21364 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T15:48:50.811+08:00  INFO 21364 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T15:48:50.914+08:00  INFO 21364 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T15:48:50.915+08:00  INFO 21364 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 970 ms
+2023-11-12T15:48:51.599+08:00  INFO 21364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T15:48:51.605+08:00  INFO 21364 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 2.146 seconds (process running for 2.91)
+2023-11-12T15:49:54.720+08:00  INFO 20088 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 20088 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T15:49:54.723+08:00  INFO 20088 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T15:49:55.481+08:00  INFO 20088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T15:49:55.482+08:00  INFO 20088 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T15:49:55.482+08:00  INFO 20088 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T15:49:55.484+08:00  INFO 20088 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T15:49:55.490+08:00  INFO 20088 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T15:49:55.491+08:00  INFO 20088 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T15:49:55.572+08:00  INFO 20088 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T15:49:55.572+08:00  INFO 20088 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 820 ms
+2023-11-12T15:49:56.116+08:00  INFO 20088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T15:49:56.123+08:00  INFO 20088 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 1.789 seconds (process running for 2.339)
+2023-11-12T15:50:54.357+08:00  INFO 20088 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T15:50:54.358+08:00  INFO 20088 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T15:50:54.358+08:00  INFO 20088 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T15:50:54.573+08:00  INFO 20088 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T15:50:54.985+08:00  INFO 20088 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45ff21e2
+2023-11-12T15:50:54.988+08:00  INFO 20088 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T15:54:39.264+08:00  INFO 20088 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T15:54:39.277+08:00  INFO 20088 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-12T15:54:43.769+08:00  INFO 3688 --- [main] c.k.v.VolunteerSystemApplication         : Starting VolunteerSystemApplication using Java 17.0.7 with PID 3688 (C:\Users\ww.cc.666\Desktop\demorproject2\target\classes started by ww.cc.666 in C:\Users\ww.cc.666\Desktop\demorproject2)
+2023-11-12T15:54:43.772+08:00  INFO 3688 --- [main] c.k.v.VolunteerSystemApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-12T15:54:44.592+08:00  INFO 3688 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8087 (http)
+2023-11-12T15:54:44.594+08:00  INFO 3688 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.34] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [2.0.1]
+2023-11-12T15:54:44.595+08:00  INFO 3688 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.34] using APR version [1.7.0].
+2023-11-12T15:54:44.600+08:00  INFO 3688 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1o  3 May 2022]
+2023-11-12T15:54:44.624+08:00  INFO 3688 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-12T15:54:44.624+08:00  INFO 3688 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-11-12T15:54:44.732+08:00  INFO 3688 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-12T15:54:44.732+08:00  INFO 3688 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 921 ms
+2023-11-12T15:54:45.338+08:00  INFO 3688 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8087 (http) with context path ''
+2023-11-12T15:54:45.349+08:00  INFO 3688 --- [main] c.k.v.VolunteerSystemApplication         : Started VolunteerSystemApplication in 2.053 seconds (process running for 2.673)
+2023-11-12T15:55:25.715+08:00  INFO 3688 --- [http-nio-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-12T15:55:25.716+08:00  INFO 3688 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-12T15:55:25.717+08:00  INFO 3688 --- [http-nio-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-11-12T15:55:26.159+08:00  INFO 3688 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-12T15:55:26.474+08:00  INFO 3688 --- [http-nio-8087-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45ff21e2
+2023-11-12T15:55:26.476+08:00  INFO 3688 --- [http-nio-8087-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-12T17:18:16.926+08:00  INFO 3688 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-12T17:18:16.942+08:00  INFO 3688 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

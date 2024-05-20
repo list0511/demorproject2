@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.UserEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.UserEntity">
+        <id column="user_id" jdbcType="VARCHAR" property="id" />
+        <result column="user_account" jdbcType="VARCHAR" property="account" />
+        <result column="user_password" jdbcType="VARCHAR" property="password" />
+        <result column="user_nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="user_type" jdbcType="INTEGER" property="type" />
+        <result column="user_pic" jdbcType="VARCHAR" property="pic" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+        <result column="user_description" jdbcType="VARCHAR" property="description" />
+        <result column="user_bind" jdbcType="VARCHAR" property="bindArray" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+        <result column="user_score_total" jdbcType="INTEGER" property="scoreTotal" />
+        <result column="user_score_current" jdbcType="INTEGER" property="scoreCurrent" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_id, user_account, user_password, user_nickname, user_type, user_pic, user_description,
+            user_bind, user_score_total, user_score_current
+    </sql>
+
+    <select id="queryUserList" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+    </select>
+
+    <delete id="deleteUser" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity">
+        delete from user_info
+        where user_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertUser" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity">
+        insert into user_info (user_id, user_account, user_password,
+                               user_nickname, user_type,
+                               user_pic, user_description, user_bind,
+                               user_score_total, user_score_current)
+        values (#{id,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{nickname,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+                #{pic,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler}, #{description,jdbcType=VARCHAR},
+                #{bindArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+                #{scoreTotal,jdbcType=INTEGER}, #{scoreCurrent,jdbcType=INTEGER})
+    </insert>
+
+    <update id="modifyUser" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity">
+        update user_info
+        set user_account = #{account,jdbcType=VARCHAR},
+            user_password = #{password,jdbcType=VARCHAR},
+            user_nickname = #{nickname,jdbcType=VARCHAR},
+            user_type = #{type,jdbcType=INTEGER},
+            user_pic = #{pic,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+            user_description = #{description,jdbcType=VARCHAR},
+            user_bind = #{bindArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+            user_score_total = #{scoreTotal,jdbcType=INTEGER},
+            user_score_current = #{scoreCurrent,jdbcType=INTEGER}
+        where user_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--根据用户名查找用户信息-->
+    <select id="selectUserByAccountByPwd" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT user_id,user_account,`user_password`
+        FROM user_info
+        WHERE user_account = #{account,jdbcType=VARCHAR} and `user_password` = #{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserByAccount" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+        WHERE user_account = #{account,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserById" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+        WHERE user_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getallChild" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+        WHERE user_type = 1
+        ORDER BY user_score_total DESC
+    </select>
+
+    <select id="getmyChild" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+        WHERE user_bind = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="gettheChild" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+        WHERE user_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <update id="addScore" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity">
+        UPDATE user_info
+        SET user_score_total = user_score_total + #{scoreCurrent,jdbcType=INTEGER},
+            user_score_current =user_score_current +  #{scoreCurrent,jdbcType=INTEGER}
+        WHERE user_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectCheckMomentChild" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM user_info
+        WHERE user_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+
+    <update id="addMomentScore" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity">
+        UPDATE user_info
+        SET user_score_total = user_score_total + #{scoreTotal,jdbcType=INTEGER},
+            user_score_current =user_score_current +  #{scoreTotal,jdbcType=INTEGER}
+        WHERE user_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

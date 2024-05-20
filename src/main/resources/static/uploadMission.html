@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Controller测试</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h2>添加任务</h2>
+<div>
+    <label for="missionName">任务名称：</label>
+    <input type="text" id="missionName">
+</div>
+<div>
+    <label for="fileData">文件数据：</label>
+    <input type="file" id="fileData" multiple>
+</div>
+<button onclick="addMission()">添加任务</button>
+
+<script>
+    function addMission() {
+        // 获取输入的任务名称和文件数据
+        let missionName = $('#missionName').val();
+        let fileData = document.getElementById('fileData').files;
+
+        // 创建任务实体对象
+        let missionEntity = {
+            "missionName": missionName,
+            "fileData": []
+        };
+
+        // 读取文件数据为字节数组
+        for (let i = 0; i < fileData.length; i++) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let fileBytes = e.target.result;
+                missionEntity.fileData.push(fileBytes);
+                if (missionEntity.fileData.length === fileData.length) {
+                    // 发送POST请求到/add
+                    $.ajax({
+                        type: "POST",
+                        url: "/mission/add",
+                        contentType: "application/json",
+                        data: JSON.stringify(missionEntity),
+                        success: function(response) {
+                            console.log("添加任务成功:", response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("添加任务失败:", error);
+                        }
+                    });
+                }
+            };
+            reader.readAsArrayBuffer(fileData[i]);
+        }
+    }
+</script>
+</body>
+</html>

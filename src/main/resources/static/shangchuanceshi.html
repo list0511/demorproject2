@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加测试</title>
+  <style>
+    /* 样式可以根据具体需求进行调整 */
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <h2>添加测试</h2>
+  <form id="testForm" enctype="multipart/form-data">
+    <div>
+      <label for="testName">测试名称：</label>
+      <input type="text" id="testName" name="testName" required>
+    </div>
+    <div>
+      <label for="testFileData">上传测试文件：</label>
+      <input type="file" id="testFileData" name="testFileData" multiple>
+    </div>
+    <button type="submit">提交</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('testForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let testName = document.getElementById('testName').value;
+    let testFileData = document.getElementById('testFileData').files;
+    let byteArrays = [];
+
+    for (let i = 0; i < testFileData.length; i++) {
+      let reader = new FileReader();
+      let testFileExtend = document.getElementById('testFileData').files[i].name.substring(document.getElementById('testFileData').files[i].name.lastIndexOf("."));
+      formData.append('fileExtend', testFileExtend);
+      reader.onload = function(event) {
+        let fileArray = new Uint8Array(event.target.result);
+        let byteArray = Array.from(fileArray);  // 转换为普通数组
+        byteArrays.push(byteArray);
+
+        if (i === testFileData.length - 1) {
+          // 若已处理完所有文件，发送POST请求给后端接口
+          fetch('/test/add', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              testName: testName,
+              fileData: byteArrays
+            })
+          })
+                  .then(response => response.json())
+                  .then(data => {
+                    // 处理后端返回的数据
+                    console.log(data);
+                    // 这里可以根据后端返回的数据做进一步的处理，比如显示成功消息等
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+        }
+      };
+      reader.readAsArrayBuffer(testFileData[i]);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Controller测试页面</title>
+</head>
+<body>
+<h2>新增用户</h2>
+<div>
+    用户名：<input type="text" id="username"><br><br>
+    密码：<input type="password" id="password"><br><br>
+    <button onclick="addUser()">新增用户</button>
+</div>
+
+<h2>上传文件</h2>
+<div>
+    <input type="file" id="fileInput" multiple><br><br>
+    <button onclick="uploadFiles()">上传文件</button>
+</div>
+
+<script>
+    function addUser() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let userEntity = {
+            username: username,
+            password: password
+        };
+
+        fetch('/user/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userEntity)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+
+    function uploadFiles() {
+        let fileInput = document.getElementById('fileInput');
+        let files = fileInput.files;
+
+        let fileData = [];
+        let fileExtend = [];
+
+        for (let i = 0; i < files.length; i++) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                fileData.push(Array.from(new Uint8Array(e.target.result)));
+            };
+            reader.readAsArrayBuffer(files[i]);
+            fileExtend.push(files[i].name.split('.').pop());
+        }
+
+        let userEntity = {
+            fileData: fileData,
+            fileExtend: fileExtend
+        };
+
+        fetch('/uploadUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userEntity)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>

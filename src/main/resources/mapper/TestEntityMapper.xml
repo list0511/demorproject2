@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.TestEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.TestEntity">
+        <id column="testId" jdbcType="VARCHAR" property="testId" />
+        <result column="testName" jdbcType="VARCHAR" property="testName" />
+        <result column="testPath" jdbcType="VARCHAR" property="testPath" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        testId, testName, testPath
+    </sql>
+
+    <select id="queryTest" parameterType="com.kardia.volunteersystem.dao.entity.TestEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM test_info
+    </select>
+
+    <delete id="deleteTest" parameterType="com.kardia.volunteersystem.dao.entity.TestEntity">
+        delete from test_info
+        where testId = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertTest" parameterType="com.kardia.volunteersystem.dao.entity.TestEntity">
+        insert into test_info (testId, testName, testPath)
+        values (#{testId,jdbcType=VARCHAR}, #{testName,jdbcType=VARCHAR},
+                #{testPath,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler})
+    </insert>
+
+    <update id="modifyUser" parameterType="com.kardia.volunteersystem.dao.entity.TestEntity">
+        update test_info
+        set testName = #{testName,jdbcType=VARCHAR},
+            testPath = #{testPath,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler}
+        where testId = #{testId,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

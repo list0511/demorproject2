@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.MarketOrderEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.MarketOrderEntity">
+        <id column="order_id" jdbcType="VARCHAR" property="id" />
+        <result column="order_market_id" jdbcType="VARCHAR" property="orderMarketId" />
+        <result column="order_volunteer_id" jdbcType="VARCHAR" property="volunteerId" />
+        <result column="order_child_id" jdbcType="VARCHAR" property="childId" />
+        <result column="order_time" jdbcType="TIMESTAMP" property="time" />
+        <result column="order_status" jdbcType="INTEGER" property="status" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        order_id, order_market_id, order_volunteer_id, order_child_id, order_time, order_status
+    </sql>
+
+    <select id="queryOrderList" parameterType="com.kardia.volunteersystem.dao.entity.MarketOrderEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_orders
+    </select>
+
+
+
+    <delete id="deleteOrder" parameterType="com.kardia.volunteersystem.dao.entity.MarketOrderEntity">
+        delete from market_orders
+        where order_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertOrder" parameterType="com.kardia.volunteersystem.dao.entity.MarketOrderEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into market_orders (order_id, order_market_id, order_volunteer_id, order_child_id, order_time, order_status)
+        values (#{id,jdbcType=VARCHAR}, #{orderMarketId,jdbcType=VARCHAR}, #{volunteerId,jdbcType=VARCHAR}, #{childId,jdbcType=VARCHAR},
+                #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+    </insert>
+
+    <update id="modifyOrder" parameterType="com.kardia.volunteersystem.dao.entity.MarketOrderEntity">
+        update market_orders
+        set order_market_id = #{orderMarketId,jdbcType=VARCHAR},
+            order_volunteer_id = #{volunteerId,jdbcType=VARCHAR},
+            order_child_id = #{childId,jdbcType=VARCHAR},
+            order_time = #{time,jdbcType=TIMESTAMP},
+            order_status = #{status,jdbcType=INTEGER}
+        where order_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="vieworder" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_orders
+        WHERE order_volunteer_id = #{id,jdbcType=VARCHAR} AND order_status = 0
+    </select>
+
+    <select id="childvieworder" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_orders
+        WHERE order_child_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="viewalreadyorder" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM market_orders
+        WHERE order_volunteer_id = #{id,jdbcType=VARCHAR} AND order_status = 1
+    </select>
+
+</mapper>

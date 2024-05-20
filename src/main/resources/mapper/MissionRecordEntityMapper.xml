@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.MissionRecordEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">
+        <id column="record_id" jdbcType="VARCHAR" property="id" />
+        <result column="record_child_id" jdbcType="VARCHAR" property="childId" />
+        <result column="record_volunteer_id" jdbcType="VARCHAR" property="volunteerId" />
+        <result column="record_mission_id" jdbcType="VARCHAR" property="missionId" />
+        <result column="record_child_time" jdbcType="TIMESTAMP" property="childTime" />
+        <result column="record_volunteer_time" jdbcType="TIMESTAMP" property="volunteerTime" />
+        <result column="record_mission_content" jdbcType="VARCHAR" property="missionContent" />
+        <result column="record_evaluation_content" jdbcType="VARCHAR" property="evaluationContent" />
+        <result column="record_status" jdbcType="INTEGER" property="status" />
+        <result column="record_misfile_address" jdbcType="VARCHAR" property="misfileAddressArray" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+        <result column="record_score" jdbcType="INTEGER" property="score" />
+        <result column="record_obtain_score" jdbcType="INTEGER" property="obtainScore" />
+        <result column="record_if_obtain" jdbcType="INTEGER" property="ifObtain" />
+    </resultMap>
+
+    <select id="queryMissionRecordList" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_records
+    </select>
+
+    <select id="selectMissionRecordById" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_records
+        WHERE record_mission_id = #{missionId,jdbcType=VARCHAR} AND record_status = #{status,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteMissionRecord" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">
+        DELETE FROM mission_records
+        WHERE record_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertRecord" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">
+        INSERT INTO mission_records
+        (record_id, record_child_id, record_volunteer_id, record_mission_id, record_child_time,
+         record_volunteer_time, record_mission_content, record_evaluation_content, record_status,
+         record_misfile_address, record_score, record_obtain_score, record_if_obtain)
+        VALUES
+            (#{id,jdbcType=VARCHAR}, #{childId,jdbcType=VARCHAR}, #{volunteerId,jdbcType=VARCHAR},
+             #{missionId,jdbcType=VARCHAR}, #{childTime,jdbcType=TIMESTAMP}, #{volunteerTime,jdbcType=TIMESTAMP},
+             #{missionContent,jdbcType=VARCHAR}, #{evaluationContent,jdbcType=VARCHAR},
+             #{status,jdbcType=INTEGER}, #{misfileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler}, #{score,jdbcType=INTEGER},
+             #{obtainScore,jdbcType=INTEGER}, #{ifObtain,jdbcType=INTEGER})
+    </insert>
+
+    <update id="modifyRecord" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">
+        UPDATE mission_records
+        SET record_child_id = #{childId,jdbcType=VARCHAR},
+            record_volunteer_id = #{volunteerId,jdbcType=VARCHAR},
+            record_mission_id = #{missionId,jdbcType=VARCHAR},
+            record_child_time = #{childTime,jdbcType=TIMESTAMP},
+            record_volunteer_time = #{volunteerTime,jdbcType=TIMESTAMP},
+            record_mission_content = #{missionContent,jdbcType=VARCHAR},
+            record_evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
+            record_status = 1,
+            record_misfile_address = #{misfileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+            record_score = #{score,jdbcType=INTEGER},
+            record_obtain_score = #{obtainScore,jdbcType=INTEGER},
+            record_if_obtain = #{ifObtain,jdbcType=INTEGER}
+        WHERE record_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+<!--    <update id="mark" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">-->
+<!--        UPDATE mission_records-->
+<!--        SET-->
+<!--            record_evaluation_content = #{evaluationContent,jdbcType=VARCHAR},-->
+<!--            record_status = #{status,jdbcType=INTEGER}-->
+<!--        WHERE record_id = #{id,jdbcType=VARCHAR}-->
+<!--    </update>-->
+
+    <!--根据儿童id查看进行中任务-->
+    <select id="SeeAccept" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_records
+        WHERE record_child_id = #{id,jdbcType=VARCHAR} and record_status in(1,2)
+    </select>
+
+    <!--根据儿童id查看历史任务-->
+    <select id="SeeHistory" parameterType="com.kardia.volunteersystem.dao.entity.UserEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_records
+        WHERE record_child_id = #{id,jdbcType=VARCHAR} and record_status in(2,3)
+    </select>
+
+    <update id="mark" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">
+        UPDATE mission_records
+        SET
+            record_evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
+            record_status = #{status,jdbcType=INTEGER},
+            record_obtain_score = #{obtainScore,jdbcType=INTEGER}
+        WHERE record_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+    <select id="obtainScore" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity" resultType="com.kardia.volunteersystem.dao.entity.UserEntity">
+        SELECT record_child_id id,record_obtain_score scoreCurrent
+        FROM mission_records
+        WHERE record_if_obtain = 0 AND record_obtain_score != 0 AND record_id = #{id,jdbcType=VARCHAR}
+
+    </select>
+
+    <update id="updateObtainedRecord" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity">
+        UPDATE mission_records
+        SET  record_if_obtain = 1
+        WHERE record_if_obtain = 0 and record_obtain_score != 0 and record_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="sortMissionRecord" parameterType="com.kardia.volunteersystem.dao.entity.MissionRecordEntity" resultMap="BaseResultMap">
+        SELECT mission_records.*
+        FROM mission_records
+                 JOIN user_info ON mission_records.record_child_id = user_info.user_id
+        ORDER BY mission_records.record_volunteer_time ASC, SUBSTRING(user_info.user_nickname, 1, 1) ASC;
+
+    </select>
+
+</mapper>
+

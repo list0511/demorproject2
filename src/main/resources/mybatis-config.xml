@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!-- 配置 -->
+    <typeAliases>
+        <package name="com.kardia.volunteersystem"/>
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" javaType="java.lang.String[]" />
+        <typeHandler handler="com.kardia.volunteersystem.utils.StringArrayArrayTypeHandler" javaType="java.lang.String[][]" />
+        <typeHandler handler="com.kardia.volunteersystem.utils.StringArrayListTypeHandler" javaType="java.util.List&lt;String[]&gt;" />
+        <typeHandler handler="com.kardia.volunteersystem.utils.ArrayListStringTypeHandler" javaType="java.util.ArrayList&lt;String&gt;" />
+    </typeHandlers>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/mysql_volunteersystem?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/MarketEntityMapper.xml"/>
+        <mapper resource="mapper/MarketOrderEntityMapper.xml"/>
+        <mapper resource="mapper/MessageEntityMapper.xml"/>
+        <mapper resource="mapper/MissionEntityMapper.xml"/>
+        <mapper resource="mapper/MissionRecordEntityMapper.xml"/>
+        <mapper resource="mapper/MomentEntityMapper.xml"/>
+        <mapper resource="mapper/TestEntityMapper.xml"/>
+        <mapper resource="mapper/UserEntityMapper.xml"/>
+    </mappers>
+
+
+</configuration>

@@ -1,0 +1,28 @@
+server:
+  port: 8087
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysql_volunteersystem?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+
+mybatis:
+  type-aliases-package: com.kardia.volunteersystem.dao.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    cache-enabled: true
+    map-underscore-to-camel-case: true
+
+logging:
+  file:
+    path: logs
+
+
+
+

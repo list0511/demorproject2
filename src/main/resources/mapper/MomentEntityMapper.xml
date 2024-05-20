@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kardia.volunteersystem.dao.mapper.MomentEntityMapper">
+    <resultMap id="BaseResultMap" type="com.kardia.volunteersystem.dao.entity.MomentEntity">
+        <id column="moment_id" jdbcType="VARCHAR" property="id" />
+        <result column="moment_user_send" jdbcType="VARCHAR" property="userSend" />
+        <result column="moment_content" jdbcType="VARCHAR" property="content" />
+        <result column="moment_type" jdbcType="INTEGER" property="type" />
+        <result column="moment_time" jdbcType="TIMESTAMP" property="time" />
+        <result column="moment_score" jdbcType="INTEGER" property="score" />
+        <result column="moment_file_address" jdbcType="VARCHAR" property="fileAddressArray" typeHandler="com.kardia.volunteersystem.utils.StringArrayTypeHandler" />
+        <result column="moment_likes" jdbcType="VARCHAR" property="likesArray" typeHandler="com.kardia.volunteersystem.utils.ArrayListStringTypeHandler" />
+        <result column="moment_comments" jdbcType="VARCHAR" property="commentsArray" typeHandler="com.kardia.volunteersystem.utils.StringArrayListTypeHandler" />
+    </resultMap>
+
+    <select id="queryMomentList" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM moment_info
+    </select>
+
+    <select id="selectMomentByUserId" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM moment_info
+        WHERE moment_user_send = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteMoment" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity">
+        delete from moment_info
+        where moment_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertMoment" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity">
+        insert into moment_info (moment_id, moment_user_send, moment_content, moment_type, moment_time,moment_score , moment_file_address,
+                                 moment_likes, moment_comments)
+        values (#{id,jdbcType=VARCHAR}, #{userSend,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+                #{type,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{score,jdbcType=INTEGER},
+                #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+                #{likesArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.ArrayListStringTypeHandler},
+                #{commentsArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayListTypeHandler})
+    </insert>
+
+    <update id="modifyMoment" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity">
+        update moment_info
+        set moment_user_send = #{userSend,jdbcType=VARCHAR},
+            moment_content = #{content,jdbcType=VARCHAR},
+            moment_type = #{type,jdbcType=INTEGER},
+            moment_time = #{time,jdbcType=TIMESTAMP},
+            moment_score = #{score,jdbcType=INTEGER},
+            moment_file_address = #{fileAddressArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayTypeHandler},
+            moment_likes = #{likesArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.ArrayListStringTypeHandler},
+            moment_comments = #{commentsArray,jdbcType=VARCHAR,typeHandler=com.kardia.volunteersystem.utils.StringArrayListTypeHandler}
+        where moment_id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectCheckedMoment" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM moment_info
+        WHERE moment_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectMomentById" parameterType="com.kardia.volunteersystem.dao.entity.MomentEntity" resultMap="BaseResultMap">
+        SELECT *
+        FROM moment_info
+        WHERE moment_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
